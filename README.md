@@ -182,7 +182,7 @@ cp kernel/arch/arm/boot/dts/rk3288-fennec.dtb /media/ls/9F35-9565/rk3288-fennec.
 cp ../rk-initrd-build/initrd.img /media/ls/9F35-9565/
 ```
 
-* 在、dev/sdb1/目录添加extlinux/extlinux.conf
+* 在/dev/sdb1/目录添加extlinux/extlinux.conf
 
 ```
 label kernel-4.4
