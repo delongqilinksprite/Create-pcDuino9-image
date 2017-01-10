@@ -59,8 +59,7 @@ vim extlinux.comf
 label kernel-4.4
     kernel /zImage
     fdt /rk3288-fennec.dtb
-    initrd /initrd.img
-    append  earlyprintk console=ttyS2,115200n8 rw root=/dev/ram0 rootfstype=ext4 init=/sbin/init ramdisk_size=49152
+    append  earlyprintk console=ttyS2,115200n8 rw root=/dev/mmcblk1p7 rootfstype=ext4 init=/sbin/init
 ```
 
 
