@@ -1,7 +1,5 @@
 # 制作pcDuino9系统镜像
 
-
-
 ## 准备工作
 
 * 1.下载pcDuino9 kernel点击[这里]()
@@ -13,32 +11,20 @@
 * 3.宿主机安装必要的环境
 
 
-
 在linux主机上创建一个目录名为rk-linux,然后将下载的uboot,kernel和根文件系统放到此文件下面。
-
 
 
 ### 安装必要的环境
 
-
-
 备注：GCC版本请使用5.x版本
 
-
-
 ```
-
 sudo apt-get install git-core gitk git-gui gcc-arm-linux-gnueabihf u-boot-tools device-tree-compiler gcc-aarch64-linux-gnu
 
 sudo apt-get install gcc-arm-linux-gnueabihf libssl-dev gcc-aarch64-linux-gnu
-
 ```
 
-
-
 ### 编译内核
-
-
 
 ```
 cd rk-linux/kernel/
@@ -54,23 +40,18 @@ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j4
 ### 编译uboot
 
 ```
-
 cd /rk-linux/u-boot/
 
 make distclean
 
 CROSS_COMPILE=arm-linux-gnueabihf- make fennec-rk3288_defconfig all
-
 ```
-
-
 
 ### 制作boot.img
 
 * 制作uboot-spl.img
 
 ```
-
 cd rk-linux/
 
 cd u-boot/tools/mkimage -n rk3288 -T rksd -d spl/u-boot-spl-dtb.bin uboot-spl.img
@@ -83,6 +64,7 @@ cat /u-boot/u-boot-spl-dtb.bin uboot-spl.img
 
 ```
 vim extlinux.comf
+
 label kernel-4.4
     kernel /zImage
     fdt /rk3288-fennec.dtb
@@ -133,9 +115,7 @@ mv linaro-rootfs.img rootfs.img
  * 下载[ramdisk source](https://github.com/wzyy2/rk-initrd-build)
  
 ```
-
 sh ./mk-initrd.sh
-
 ```
 
 * 格式化SD卡
@@ -207,22 +187,17 @@ The operation has completed successfully.
 
 ```
 ```
-
 sudo umount /dev/sdb1
 
 sudo mkfs.fat /dev/sdb1
-
 ```
 ```
-
 sudo dd if=uboot-spl.img of=/dev/sdb seek=64
-
 ```
 
 * 复制 zimage, dts and ramdisk 到 /dev/sdb1
 
 ```
-
 cd rk-linux/
 
 cp kernel/arch/arm/boot/zImage /media/chen/9F35-9565/
@@ -235,7 +210,6 @@ cp ../rk-initrd-build/initrd.img /media/ls/9F35-9565/
 * 在、dev/sdb1/目录添加extlinux/extlinux.conf
 
 ```
-
 label kernel-4.4
     kernel /zImage
     fdt /rk3288-fennec.dtb
@@ -246,7 +220,6 @@ label kernel-4.4
 * 复制 u-boot-dtb.img uboot-spl.img boot.img rootfs.img 和 update.sh 到 /dev/sdb1
 
 ```
-
 mkdir /media/chen/9F35-9565/update
 
 cp u-boot-dtb.img /media/chen/9F35-9565/update
