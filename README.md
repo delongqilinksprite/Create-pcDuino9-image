@@ -2,8 +2,8 @@
 
 ## 准备工作
 
-* 1.下载pcDuino9 kernel [Baiduyun]()
-* 2.下载pcDuino9 uboot [Baiduyun]()
+* 1.下载pcDuino9 kernel [Baiduyun](http://pan.baidu.com/s/1slB59XN)
+* 2.下载pcDuino9 uboot [Baiduyun](http://pan.baidu.com/s/1hsjxHp6)
 * 3.下载pcDuino9 根文件系 [Baiduyun](https://pan.baidu.com/s/1eSE1tfW#list/path=%2F)
 
 在linux主机上创建一个目录名为rk-linux,然后将下载的uboot,kernel和根文件系统放到此文件下面。
@@ -87,7 +87,7 @@ mv linaro-rootfs.img rootfs.img
 
 ### 制作卡更新系统
 
-下载[initrd.img](https://github.com/delongqilinksprite/Create-pcDuino9-image/)
+下载[initrd.img](http://pan.baidu.com/s/1bPrkUq)
 
 * 格式化SD卡
 
