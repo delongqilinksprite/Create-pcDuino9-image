@@ -2,14 +2,9 @@
 
 ## 准备工作
 
-* 1.下载pcDuino9 kernel点击[这里]()
-
-* 2.下载pcDuino9 uboot点击[这里]()
-
-* 3.下载pcDuino9 rootfs点击[这里](https://pan.baidu.com/s/1eSE1tfW#list/path=%2F)
-
-* 3.宿主机安装必要的环境
-
+* 1.下载pcDuino9 kernel [Baiduyun]()
+* 2.下载pcDuino9 uboot [Baiduyun]()
+* 3.下载pcDuino9 根文件系 [Baiduyun](https://pan.baidu.com/s/1eSE1tfW#list/path=%2F)
 
 在linux主机上创建一个目录名为rk-linux,然后将下载的uboot,kernel和根文件系统放到此文件下面。
 
@@ -20,7 +15,6 @@
 
 ```
 sudo apt-get install git-core gitk git-gui gcc-arm-linux-gnueabihf u-boot-tools device-tree-compiler gcc-aarch64-linux-gnu
-
 sudo apt-get install gcc-arm-linux-gnueabihf libssl-dev gcc-aarch64-linux-gnu
 ```
 
@@ -93,11 +87,7 @@ mv linaro-rootfs.img rootfs.img
 
 ### 制作卡更新系统
 
- * 下载[ramdisk source](https://github.com/wzyy2/rk-initrd-build)
- 
-```
-sh ./mk-initrd.sh
-```
+下载[initrd.img](https://github.com/delongqilinksprite/Create-pcDuino9-image/)
 
 * 格式化SD卡
 
@@ -117,49 +107,25 @@ Found valid GPT with protective MBR; using GPT.
 
 
 Command (? for help): o
-
 This option deletes all partitions and creates a new protective MBR.
-
 Proceed? (Y/N): y
 
-
-
 Command (? for help): n
-
 Partition number (1-128, default 1): 1
-
 First sector (34-126613470, default = 2048) or {+-}size{KMGTP}: 8192
-
 Last sector (8192-126613470, default = 126613470) or {+-}size{KMGTP}: 
-
 Current type is 'Linux filesystem'
-
 Hex code or GUID (L to show codes, Enter = 8300): 
-
 Changed type of partition to 'Linux filesystem'
 
-
-
 Command (? for help): w
-
-
-
 Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING
-
 PARTITIONS!!
-
-
-
 Do you want to proceed? (Y/N): y
-
 OK; writing new GUID partition table (GPT) to /dev/sdc.
-
 Warning: The kernel is still using the old partition table.
-
 The new table will be used at the next reboot.
-
 The operation has completed successfully.
-
 ```
 ```
 sudo umount /dev/sdb1
@@ -196,17 +162,10 @@ label kernel-4.4
 
 ```
 mkdir /media/chen/9F35-9565/update
-
-cp u-boot-dtb.img /media/chen/9F35-9565/update
-
 cp uboot-spl.img /media/chen/9F35-9565/update
-
 cp boot.img /media/chen/9F35-9565/update
-
 cp rootfs.img /media/chen/9F35-9565/update
-
 cp update.sh /media/chen/9F35-9565/update
-
 ```
 
 ### 更新pcDuino9系统通过SD卡
