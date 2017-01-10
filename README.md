@@ -28,22 +28,16 @@ sudo apt-get install gcc-arm-linux-gnueabihf libssl-dev gcc-aarch64-linux-gnu
 
 ```
 cd rk-linux/kernel/
-
 make clean
-
 make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- rockchip_linux_defconfig
-
 make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j4
-
 ```
 
 ### 编译uboot
 
 ```
 cd /rk-linux/u-boot/
-
 make distclean
-
 CROSS_COMPILE=arm-linux-gnueabihf- make fennec-rk3288_defconfig all
 ```
 
@@ -53,11 +47,8 @@ CROSS_COMPILE=arm-linux-gnueabihf- make fennec-rk3288_defconfig all
 
 ```
 cd rk-linux/
-
-cd u-boot/tools/mkimage -n rk3288 -T rksd -d spl/u-boot-spl-dtb.bin uboot-spl.img
-
-cat /u-boot/u-boot-spl-dtb.bin uboot-spl.img
-
+u-boot/tools/mkimage -n rk3288 -T rksd -d u-boot/spl/u-boot-spl-dtb.bin uboot-spl.img
+cat u-boot/u-boot-dtb.bin >> uboot-spl.img
 ```
 
 * 制作extlinux.conf
@@ -78,23 +69,14 @@ label kernel-4.4
 
 ```
 cd rk-linux/
-
 sudo dd if=/dev/zero of=boot.img bs=1M count=128
-
 sudo mkfs.fat boot.img
-
 mkdir boot
-
 sudo mount boot.img boot
-
 sudo cp kernel/arch/arm/boot/zImage boot
-
 sudo cp kernel/arch/arm/boot/dts/rk3288-fennec.dtb boot
-
 sudo mkdir boot/extlinux
-
 sudo cp extlinux.conf boot/extlinux
-
 sudo umount boot
 ```
 
@@ -122,17 +104,11 @@ sh ./mk-initrd.sh
 
 ```
 chen@chen-HP-ProDesk-680-G1-TWR:~/work/linaro-alip/ramdisk/update$ sudo gdisk /dev/sdb
-
 GPT fdisk (gdisk) version 0.8.8
-
 Partition table scan:
-
   MBR: protective
-
   BSD: not present
-
   APM: not present
-
   GPT: present
 
 
